@@ -85,7 +85,7 @@ class _MagicTrackerScreenState extends State<MagicTrackerScreen> {
       case 'Black':
         return Colors.black;
       case 'Green':
-        return Colors.green;
+        return const Color.fromARGB(255, 18, 54, 20);
       case 'White':
         return Colors.white;
       case 'Colorless':
@@ -105,79 +105,82 @@ class _MagicTrackerScreenState extends State<MagicTrackerScreen> {
       appBar: AppBar(
         title: Text('Magic Tracker'),
       ),
-      body: Column(
-        children: [
-          GestureDetector(
-            onTapUp: (details) {
-              if (details.localPosition.dx <
-                  MediaQuery.of(context).size.width / 2) {
-                _updateLife(false); // Decrease if tapped on left half
-              } else {
-                _updateLife(true); // Increase if tapped on right half
-              }
-            },
-            onLongPress: _resetLife,
-            child: Container(
-              height: halfScreenHeight,
-              color: const Color.fromARGB(255, 56, 56, 56),
-              child: Center(
-                child: Text(
-                  '$life',
-                  style: TextStyle(fontSize: 164),
+      body: Container(
+        color: const Color.fromARGB(255, 56, 56, 56),
+        child: Column(
+          children: [
+            GestureDetector(
+              onTapUp: (details) {
+                if (details.localPosition.dx <
+                    MediaQuery.of(context).size.width / 2) {
+                  _updateLife(false); // Decrease if tapped on left half
+                } else {
+                  _updateLife(true); // Increase if tapped on right half
+                }
+              },
+              onLongPress: _resetLife,
+              child: Container(
+                height: halfScreenHeight,
+                color: const Color.fromARGB(255, 56, 56, 56),
+                child: Center(
+                  child: Text(
+                    '$life',
+                    style: TextStyle(fontSize: 164),
+                  ),
                 ),
               ),
             ),
-          ),
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  color: const Color.fromARGB(255, 56, 56, 56),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: manaCount.keys.map((color) {
-                      return Column(
-                        children: [
-                          GestureDetector(
-                            onTap: () => _updateMana(
-                                color, false), // Increase when tapped
-                            onLongPress: _resetStormAndMana,
-                            child: Text(
-                              '${manaCount[color] ?? 0}',
-                              style: TextStyle(fontSize: 64),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    color: const Color.fromARGB(255, 56, 56, 56),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: manaCount.keys.map((color) {
+                        return Column(
+                          children: [
+                            GestureDetector(
+                              onTap: () => _updateMana(
+                                  color, false), // Increase when tapped
+                              onLongPress: _resetStormAndMana,
+                              child: Text(
+                                '${manaCount[color] ?? 0}',
+                                style: TextStyle(fontSize: 64),
+                              ),
                             ),
-                          ),
-                          GestureDetector(
-                            onTap: () => _updateMana(
-                                color, true), // Decrease when tapped
-                            onLongPress: _resetStormAndMana,
-                            child: Icon(Icons.circle,
-                                color: _getColorFromManaType(color), size: 64),
-                          ),
-                        ],
-                      );
-                    }).toList(),
+                            GestureDetector(
+                              onTap: () => _updateMana(
+                                  color, true), // Decrease when tapped
+                              onLongPress: _resetStormAndMana,
+                              child: Icon(Icons.circle,
+                                  color: _getColorFromManaType(color), size: 64),
+                            ),
+                          ],
+                        );
+                      }).toList(),
+                    ),
                   ),
-                ),
-                                Container(
-                  height: quarterScreenHeight,
-                  color: const Color.fromARGB(255, 56, 56, 56),
-                  child: GestureDetector(
-                    onTap: _updateStormCount,
-                    onLongPress: _resetStormAndMana,
-                    child: Center(
-                      child: Text(
-                        'Storm Count: $stormCount',
-                        style: TextStyle(fontSize: 24),
+                                  Container(
+                    height: quarterScreenHeight,
+                    color: const Color.fromARGB(255, 56, 56, 56),
+                    child: GestureDetector(
+                      onTap: _updateStormCount,
+                      onLongPress: _resetStormAndMana,
+                      child: Center(
+                        child: Text(
+                          'Storm Count: $stormCount',
+                          style: TextStyle(fontSize: 24),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
