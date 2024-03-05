@@ -58,7 +58,7 @@ class _MagicTrackerScreenState extends State<MagicTrackerScreen> {
 
   void _resetLife() {
     setState(() {
-      life = 0;
+      life = 20;
     });
   }
 
