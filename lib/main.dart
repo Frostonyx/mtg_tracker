@@ -83,26 +83,6 @@ class _MagicTrackerScreenState extends State<MagicTrackerScreen> {
           : manaCount[color] = (manaCount[color] ?? 0) - 1;
     });
   }
-  //DEPRECIATED:
-
-  //Color _getColorFromManaType(String manaType) {
-  //  switch (manaType) {
-  //    case 'Red':
-  //      return Colors.red;
-  //    case 'Blue':
-  //      return Colors.blue;
-  //    case 'Black':
-  //      return Colors.black;
-  //    case 'Green':
-  //      return Color.fromARGB(255, 55, 179, 61);
-  //    case 'White':
-  //      return Colors.white;
-  //    case 'Colorless':
-  //      return const Color.fromARGB(255, 204, 204, 204);
-  //    default:
-  //      return Colors.black; // Default color
-  //  }
-  //}
 
   @override
   Widget build(BuildContext context) {
@@ -124,9 +104,6 @@ class _MagicTrackerScreenState extends State<MagicTrackerScreen> {
                 'Mana Counters',
                 style: TextStyle(color: Colors.white, fontSize: 20),
               ),
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
             ),
             for (var manaType in manaVisibility.keys)
               CheckboxListTile(
@@ -142,7 +119,6 @@ class _MagicTrackerScreenState extends State<MagicTrackerScreen> {
         ),
       ),
       body: Container(
-        color: const Color.fromARGB(255, 138, 137, 137),
         child: Column(
           children: [
             GestureDetector(
@@ -157,7 +133,6 @@ class _MagicTrackerScreenState extends State<MagicTrackerScreen> {
               onLongPress: _resetLife,
               child: Container(
                 height: halfScreenHeight,
-                color: Color.fromARGB(255, 138, 137, 137),
                 child: Center(
                   child: Text(
                     '$life',
@@ -174,7 +149,6 @@ class _MagicTrackerScreenState extends State<MagicTrackerScreen> {
       Expanded(
         child: Center(
           child: Container(
-            color: const Color.fromARGB(255, 138, 137, 137),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -206,7 +180,6 @@ class _MagicTrackerScreenState extends State<MagicTrackerScreen> {
       ),
       Container(
         height: quarterScreenHeight,
-        color: const Color.fromARGB(255, 138, 137, 137),
         child: GestureDetector(
           onTap: _updateStormCount,
           onLongPress: _resetStormAndMana,
